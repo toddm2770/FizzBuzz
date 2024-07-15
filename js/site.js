@@ -1,15 +1,17 @@
 //get the balues from the user
 function getValues(){
-    let fizzValue = document.getElementById("fizzValue").value;
-    let buzzValue = document.getElementById("buzzValue").value;
     let endValue = document.getElementById("endValue").value;
     let startValue = 1;
 
-    fizzValue = parseInt(fizzValue);
-    buzzValue = parseInt(buzzValue);
+    if (endValue == ""){
+        endValue = "100"
+        confirm("You did not enter a number for Stop Value. A default of 100 has been applied.")
+    }
+
+
     endValue = parseInt(endValue);
 
-    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && Number.isInteger(endValue)){
+    if(Number.isInteger(endValue)){
         let numbers = generateFizzBuzz(startValue, endValue);
         displayFizzBuzz(numbers);
 
@@ -38,10 +40,24 @@ function displayFizzBuzz(numbers){
         let className = "";
         let fizzValue = document.getElementById("fizzValue").value;
         let buzzValue = document.getElementById("buzzValue").value;
+
+        if(fizzValue == ""){
+            fizzValue = "3";
+        }
+        if(buzzValue == ""){
+            buzzValue = "5";
+        }
+        fizzValue = parseInt(fizzValue);
+        buzzValue = parseInt(buzzValue);
+        if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
+
+        } else {
+            alert("You must enter a number! Please correct your inputs.")
+        }
+
+
         
-        if (numbers[index] == 0){
-            className = "";
-        } else if (numbers[index] % fizzValue == 0 && numbers[index] % buzzValue == 0){
+        if (numbers[index] % fizzValue == 0 && numbers[index] % buzzValue == 0){
             numbers[index] = "FizzBuzz";
             className = "FizzBuzz";
         } else if(numbers[index] % fizzValue == 0) {

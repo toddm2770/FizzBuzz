@@ -100,7 +100,6 @@ footer i:hover{
 .Fizz{
     background-color: var(--tm-theme-300);
     color: black;
-    content: "Fizz";
     font-weight: 500;
 }
 
@@ -112,6 +111,6 @@ footer i:hover{
 
 .FizzBuzz{
     background-color: var(--tm-theme-900);
-    color:white;
+    color:orangered;
     font-weight: 500;
 }
