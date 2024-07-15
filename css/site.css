@@ -96,3 +96,22 @@ footer i{
 footer i:hover{
     color: var(--cf-theme-200)
 }
+
+.Fizz{
+    background-color: var(--tm-theme-300);
+    color: black;
+    content: "Fizz";
+    font-weight: 500;
+}
+
+.Buzz{
+    background-color: var(--tm-theme-500);
+    color: black;
+    font-weight: 500;   
+}
+
+.FizzBuzz{
+    background-color: var(--tm-theme-900);
+    color:white;
+    font-weight: 500;
+}
