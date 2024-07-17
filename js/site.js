@@ -7,7 +7,11 @@ function getValues(){
     buzzValue = parseInt(buzzValue);
     stopValue = parseInt(stopValue);
 
-    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && Number.isInteger(stopValue)){
+    if(stopValue > 5000){
+        alert("Stop Value must be less than 5000")
+    }
+
+    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && Number.isInteger(stopValue) && stopValue < 5001){
         //generate fizzbuzz
         let fbValues = generateFizzBuzz(fizzValue, buzzValue, stopValue);
         //display fizzbuzz
