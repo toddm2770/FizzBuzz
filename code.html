@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>APP Name Coding Challenge by Todd Myers</title>
+    <title>FizzBuzz Coding Challenge by Todd Myers</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -80,20 +80,86 @@
               <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                   <code class="language-javascript">
-                    //get values from the screen and display them
-                    function getValues2(){
-                    let inputMessage = document.getElementById("message").value;
-                    let alertMessage = document.getElementById("alertMessage");
-                    alertMessage.innerText = inputMessage;
-
-}
+                    function getValues(){
+                      let fizzValue = document.getElementById("fizzValue").value;
+                      let buzzValue = document.getElementById("buzzValue").value;
+                      let stopValue = document.getElementById("stopValue").value;    
+                      //validate input
+                      fizzValue = parseInt(fizzValue);
+                      buzzValue = parseInt(buzzValue);
+                      stopValue = parseInt(stopValue);
+                  
+                      if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && Number.isInteger(stopValue)){
+                          //generate fizzbuzz
+                          let fbValues = generateFizzBuzz(fizzValue, buzzValue, stopValue);
+                          //display fizzbuzz
+                          displayValues(fbValues);
+                      }
+                  }
+                  
+                  //generate fizz buzz values with an if statement
+                  function generateFizzBuzz(fValue, bValue, sValue){
+                  
+                      let fbValues = [];
+                  
+                      for(let i = 1; i <= sValue; i++){
+                          if (i % fValue == 0 && i % bValue == 0){
+                              fbValues.push("FizzBuzz");
+                          } else if(i % fValue == 0){
+                              fbValues.push("Fizz");
+                          } else if(i % bValue == 0){
+                              fbValues.push("Buzz");
+                          } else {
+                              fbValues.push(i);
+                          }
+                      }
+                  
+                      return fbValues;
+                  }
+                  
+                  //display the values on the page
+                  function displayValues(fbValues){
+                      let results = document.getElementById("resultsData")
+                      results.innerHTML = "";   
+                      let content = "";
+                  
+                      //loop over the fbValues array
+                      for(let i = 0; i < fbValues.length; i++){
+                  
+                          let dataValue = fbValues[i];
+                          let cssClass = "";
+                  
+                          if (Number.isInteger(dataValue)){
+                              cssClass = "noFB";
+                          } else {
+                              cssClass = dataValue;
+                          }
+                  
+                          let divElement = `<xmp><div class="col border p-3 ${cssClass}">${dataValue}</div></code></xmp>`;
+                          content += divElement;
+                      }
+                  
+                      results.innerHTML = content;
+                  }
                   </code>
                 </pre>
               </div>
               <div class="col-12 col-lg-4">
-                <p>the code is structured in one function</p>
-                <h5>getValues2</h5>
-                <p>Displays the user entered message</p>
+                <h4>The code is structured into three functions</h4>
+                <h5>getValues</h5>
+                <p>This function retrieves user input values for "Fizz", "Buzz", and the value to stop at.
+                  After retrivieving the input values it converts them to integers and validates them. Then it runs the "generateFizzBuzz"
+                  function followed by the "displayValues" function.
+                </p>
+                <h5>generateFizzBuzz</h5>
+                <p>Starting at the number 1 this function generates numbers until reaching the user defined stopping point. As it generates numbers
+                  it uses if/else statements to check if the number is divisable by either the Fizz value, Buzz value, or both. If the numbers
+                  are divisable by one of these values it then pushes the corresponding string to the array "fbValues".
+                </p>
+                <h5>displayValues</h5>
+                <p>This function displays the values generated by "generateFizzBuzz" on the webpage. For each value it determines it's CSS class and
+                  creates a div element. It then inserts this content into the results container.
+                </p>
               </div>
             </div>
         </div>

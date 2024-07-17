@@ -1,76 +1,61 @@
-//get the balues from the user
 function getValues(){
-    let endValue = document.getElementById("endValue").value;
-    let startValue = 1;
+    let fizzValue = document.getElementById("fizzValue").value;
+    let buzzValue = document.getElementById("buzzValue").value;
+    let stopValue = document.getElementById("stopValue").value;    
+    //validate input
+    fizzValue = parseInt(fizzValue);
+    buzzValue = parseInt(buzzValue);
+    stopValue = parseInt(stopValue);
 
-    if (endValue == ""){
-        endValue = "100"
-        confirm("You did not enter a number for Stop Value. A default of 100 has been applied.")
-    }
-
-
-    endValue = parseInt(endValue);
-
-    if(Number.isInteger(endValue)){
-        let numbers = generateFizzBuzz(startValue, endValue);
-        displayFizzBuzz(numbers);
-
-    } else {
-        alert("You must enter a number! Please correct your inputs.")
+    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && Number.isInteger(stopValue)){
+        //generate fizzbuzz
+        let fbValues = generateFizzBuzz(fizzValue, buzzValue, stopValue);
+        //display fizzbuzz
+        displayValues(fbValues);
     }
 }
 
-function generateFizzBuzz(sValue, eValue){
+//generate fizz buzz values with an if statement
+function generateFizzBuzz(fValue, bValue, sValue){
 
-    let numbers = [];
+    let fbValues = [];
 
-    for(let i = sValue; i<=eValue; i++){
-        numbers.push(i);
-    }
-
-    return numbers;
-}
-
-function displayFizzBuzz(numbers){
-
-    let templateCols = "";
-
-    for(let index = 0; index < numbers.length; index++){
-
-        let className = "";
-        let fizzValue = document.getElementById("fizzValue").value;
-        let buzzValue = document.getElementById("buzzValue").value;
-
-        if(fizzValue == ""){
-            fizzValue = "3";
-        }
-        if(buzzValue == ""){
-            buzzValue = "5";
-        }
-        fizzValue = parseInt(fizzValue);
-        buzzValue = parseInt(buzzValue);
-        if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
-
+    for(let i = 1; i <= sValue; i++){
+        if (i % fValue == 0 && i % bValue == 0){
+            fbValues.push("FizzBuzz");
+        } else if(i % fValue == 0){
+            fbValues.push("Fizz");
+        } else if(i % bValue == 0){
+            fbValues.push("Buzz");
         } else {
-            alert("You must enter a number! Please correct your inputs.")
+            fbValues.push(i);
         }
-
-
-        
-        if (numbers[index] % fizzValue == 0 && numbers[index] % buzzValue == 0){
-            numbers[index] = "FizzBuzz";
-            className = "FizzBuzz";
-        } else if(numbers[index] % fizzValue == 0) {
-            numbers[index] = "Fizz";
-            className = "Fizz";
-        } else if(numbers[index] % buzzValue == 0) {
-            numbers[index] = "Buzz";
-            className = "Buzz";
-        }  else {
-            className = "";
-        }
-        templateCols += `<div class="${className} ${"border p-3"}">${numbers[index]}</div>`;
     }
 
-    document.getElementById("resultsData").innerHTML = templateCols;
+    return fbValues;
+}
+
+//display the values on the page
+function displayValues(fbValues){
+    let results = document.getElementById("resultsData")
+    results.innerHTML = "";   
+    let content = "";
+
+    //loop over the fbValues array
+    for(let i = 0; i < fbValues.length; i++){
+
+        let dataValue = fbValues[i];
+        let cssClass = "";
+
+        if (Number.isInteger(dataValue)){
+            cssClass = "noFB";
+        } else {
+            cssClass = dataValue;
+        }
+
+        let divElement = `<div class="col border p-3 ${cssClass}">${dataValue}</div>`;
+        content += divElement;
+    }
+
+    results.innerHTML = content;
 }
